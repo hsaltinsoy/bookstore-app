@@ -1,0 +1,39 @@
+version: '3'
+services:
+  python-app-container:
+    image: saidaltinsoy/web-app:1.0  # Use the image you built
+    container_name: python-app-container
+    ports:
+      - "80:80"
+    environment:
+      - MYSQL_HOST=database
+      - MYSQL_PORT=3306
+      - MYSQL_USER=clarusway
+      - MYSQL_PASSWORD=Clarusway_1
+      - MYSQL_DATABASE=bookstore_db
+    networks:
+      - mynetwork
+    depends_on:
+      - database
+    restart: on-failure
+    links:
+      - database
+
+  database:
+    image: mysql
+    container_name: database
+    environment:
+      - MYSQL_ROOT_PASSWORD=Clarusway_1
+      - MYSQL_USER=clarusway
+      - MYSQL_PASSWORD=Clarusway_1
+      - MYSQL_DATABASE=bookstore_db
+    networks:
+      - mynetwork
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
+
+networks:
+  mynetwork:
