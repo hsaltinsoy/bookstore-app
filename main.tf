@@ -83,7 +83,7 @@ resource "aws_instance" "tf-ec2" {
               curl -SL https://github.com/docker/compose/releases/download/v2.20.3/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
               chmod +x /usr/local/bin/docker-compose
               cd /home/ec2-user && git clone https://github.com/hsaltinsoy/bookstore-app.git             
-              cd bookstore-app && docker build -t saidaltinsoy/bookstore-app .
+              cd bookstore-app && docker build -t saidaltinsoy/bookstore-app:1.0 .
               sleep 10
               docker-compose up -d
 	          EOF
