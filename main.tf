@@ -17,7 +17,7 @@ locals {
   instance-type = "t2.micro"
   key-name = "new-key-pair"
   secgr-dynamic-ports = [22,80,443,8080,5000]
-  user = "said_altnsy"
+  user = "Web Server of Bookstore"
 }
 
 resource "aws_security_group" "allow_ssh" {
@@ -67,7 +67,7 @@ resource "aws_instance" "tf-ec2" {
   key_name = local.key-name
   vpc_security_group_ids = [ aws_security_group.allow_ssh.id ]
   tags = {
-      Name = "${local.user}-Docker-instance"
+      Name = "${local.user}"
   }
 
   user_data = <<-EOF
