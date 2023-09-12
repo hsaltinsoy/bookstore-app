@@ -1,6 +1,7 @@
 FROM python:alpine
-RUN pip install flask && pip install flask-mysql && pip install cryptography
-COPY . /app
 WORKDIR /app
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt && pip install cryptography
+COPY . .
 EXPOSE 80
 CMD python ./bookstore-api.py
