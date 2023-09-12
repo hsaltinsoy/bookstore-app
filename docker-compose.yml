@@ -1,7 +1,7 @@
 version: '3'
 services:
   python-app-container:
-    image: saidaltinsoy/bookstore-app:1.0  # Use the image you built
+    build: .   # build image
     container_name: python-app-container
     ports:
       - "80:80"
